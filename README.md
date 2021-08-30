@@ -1,6 +1,6 @@
 # Integrated Management of Public Distribution - IM-PDS Data
 
-[![Generic badge](https://img.shields.io/badge/View_Data_on-Flat_Github-GREEN.svg)](https://flatgithub.com/kaarana/ONORC-Data
+[![Generic badge](https://img.shields.io/badge/View_Data_on-Flat_Github-GREEN.svg)](https://flatgithub.com/srikanthlogic/ONORC-Data)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
 

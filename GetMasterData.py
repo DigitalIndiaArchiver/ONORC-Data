@@ -28,15 +28,16 @@ def getSaleData(month,year):
     #Get Monthly Summary Stats
     navbar = s.find_all('div',attrs={'class':'metro-nav-block1'})
     monthly_stat['states_joined'] = navbar[0].find('span').text.strip()
-    monthly_stat['ration_cards'] =  navbar[1].find('span').text.strip()
-    monthly_stat['total_beneficiaries'] =  navbar[2].find('span').text.strip()
-    monthly_stat['total_txn'] =  navbar[3].find('span').text.strip()
+    monthly_stat['ration_cards'] =  navbar[1].find('span').text.strip().replace(',', '')
+    monthly_stat['total_beneficiaries'] =  navbar[2].find('span').text.strip().replace(',', '')
+    monthly_stat['total_txn'] =  navbar[3].find('span').text.strip().replace(',', '')
     monthly_stat['pmgkay_txn'] = navbar[3].text.strip().split('(PMGKAY-')[1].split(')')[0]
-    monthly_stat['wheat_in_kg'] = navbar[4].find('span').text.strip()
-    monthly_stat['rice_in_kg'] = navbar[5].find('span').text.strip()
-    monthly_stat['pmgkay_wheat_in_kg'] = navbar[6].find('span').text.strip()
-    monthly_stat['pmgkay_rice_in_kg'] = navbar[7].find('span').text.strip()
-    monthly_stat['year_month'] = year + month.zfill(2)
+    monthly_stat['wheat_in_kg'] = navbar[4].find('span').text.strip().replace(',', '')
+    monthly_stat['rice_in_kg'] = navbar[5].find('span').text.strip().replace(',', '')
+    monthly_stat['pmgkay_wheat_in_kg'] = navbar[6].find('span').text.strip().replace(',', '')
+    monthly_stat['pmgkay_rice_in_kg'] = navbar[7].find('span').text.strip().replace(',', '')
+    monthly_stat['year'] = year 
+    monthly_stat['month'] = month.zfill(2)
 
     # #For each col in home state
     # for row in s.find_all('thead')[0].find_all('tr')[1].find_all('th'):
@@ -52,8 +53,9 @@ def getSaleData(month,year):
                 sale_data = {}
                 sale_data['sale_state'] = current_sale_state
                 sale_data['home_state'] = cell.find('a')['href'].split('home_state=')[1].upper()
-                sale_data['quantity'] = cell.find('a').text
-                sale_data['year_month'] = year + month.zfill(2)
+                sale_data['transactions'] = cell.find('a').text.replace(',', '')
+                sale_data['year'] = year 
+                sale_data['month'] = month.zfill(2)
                 monthly_sale_date.append(sale_data)
     logging.debug(monthly_sale_date)
     monthly_stats.append(monthly_stat)
